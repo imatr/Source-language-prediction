@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# This is the script that trains and evaluates my classifier pipeline.
+# There are multiple available features, balancing the dataset can
+# be turned on and off, and the classifier can be evaluated on a different
+# testset as well.
+
 import glob
 import numpy
 import sys

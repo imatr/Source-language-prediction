@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # This script analyses the language tags in the Europarl corpus. It will only select
-# speeches that are availible in English, and if they are originally in English,
+# speeches that are available in English, and if they are originally in English,
 # it will check that the text is produced by a MEP from the UK.
 
 import argparse
@@ -13,19 +13,19 @@ from collections import defaultdict
 from whoswho import who
 
 
-def get_availible():
+def get_available():
     '''
     Creates a set that contains information on whether a speech can be found in the English part of Europarl.
     The information represented by a tuple in the format (file-ID, speaker-ID).
     '''
-    availible = set()
+    available = set()
     for path in glob.glob('./en/*.xml.gz'):
         report_code = path.split('/')[-1][:-7]
         with gzip.open(path, 'rb') as file_handle:
             tree = ET.fromstring(file_handle.read())
         for fragment in tree.findall('.//SPEAKER[@ID]'):
-            availible.add((report_code, fragment.get('ID')))
-    return availible
+            available.add((report_code, fragment.get('ID')))
+    return available
 
 
 def is_british(name):
@@ -38,7 +38,7 @@ def is_british(name):
 
 def main():
     id_to_lang = defaultdict(set)
-    availible = get_availible()
+    available = get_available()
     # Search through the corpus and put all speeches that were said by UK MEPS in English,
     # and all speeches that were not said in English, but do have a language tag in a dictionary.
     for path in glob.glob('{}*/*.xml.gz'.format(args.path)):
@@ -63,7 +63,7 @@ def main():
             language = id_to_lang[key].pop()
             if language not in file_handles:
                 file_handles[language] = open('./fragment_data/{}.txt'.format(language), 'w')
-            if key in availible:
+            if key in available:
                 print('{},{}'.format(*key), file=file_handles[language])
             for language in file_handles:
                 file_handles[language].close()

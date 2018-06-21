@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# This script will create versions of text files where all tokens have been replaced by
+# parse rules representing the relationship between tokens. The format of these rules is
+# MAIN_DEPENDENCY DEPENDENCY_IN_SUBTREE [DEPENDENCY_IN_SUBTREE] ...
+
 import argparse
 import glob
 import spacy
