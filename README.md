@@ -29,7 +29,7 @@ Secondly, some scripts have multiple command line options. By putting these scri
 
 #### Collecting data
 1. The first step in preparing the data is finding the data in the corpus. This is done using the find_fragments script. This script requires two command line arguments (see `find_fragments.py --help`). The first argument is the path to the "raw" folder of your Europarl corpus. The second argument is the path to the file containing a list of MEPs from the United Kingdom. My version of this file can be found in this repository (meps.txt). Please note that this step takes a very long time, which is why I have put my results of this step in 'fragment_data.zip'. You should be able to use those results as well.
-2. Next, we need to put the data that we are interested in into text files. This is done by running `split_data.py` with the path of the 'fragment_data' directory from the previous step, and a path where you want the data to be put.
+2. Next, we need to put the data that we are interested in into text files. This is done by running `split_data.py` with the path to your Europarl corpus, and the path of the 'fragment_data' directory from the previous step.
 3. The last step in collecting the data is running the `select_files.py` script. This script expects two arguments. The first argument is the path to your 'fragment_data' directory. The second argument is the location where you want the data to be put. If the output directory does not exist, the script will try to create it automatically.
 
 #### Preprocessing the data
